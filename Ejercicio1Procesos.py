@@ -4,11 +4,12 @@ try:
     for proc in psutil.process_iter():
         processName = proc.name()
         processID = proc.pid
+        CPU= proc.cpu_percent()
         blocNotas=False
         if processName=="notepad.exe":
             blocNotas=True
         else:
-            print(processName, ' ::: ', processID)
+            print(processName, ' ::: ', processID, "Porcentaje de CPU: ", CPU, "%")
     if blocNotas == True:
         print("El Bloc de Notas esta en ejecución")
     print("Escribe el nombre del proceso que quieras terminar: ")
