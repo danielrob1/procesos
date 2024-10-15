@@ -4,10 +4,13 @@ try:
     for proc in psutil.process_iter():
         processName = proc.name()
         processID = proc.pid
+        blocNotas=False
         if processName=="notepad.exe":
-            print("El bloc de notas esta en ejecucion")
+            blocNotas=True
         else:
             print(processName, ' ::: ', processID)
+    if blocNotas == True:
+        print("El Bloc de Notas esta en ejecución")
     print("Escribe el nombre del proceso que quieras terminar: ")
     proceso= int(input())
     for proc in psutil.process_iter():
