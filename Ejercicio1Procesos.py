@@ -22,9 +22,16 @@ while continuar==True:
         print("Escribe el nombre del proceso que quieras terminar: ")
         proceso= int(input())
         for proc in psutil.process_iter():
-            if proc.pid==proceso:
-                print("El proceso ", proc.name(), " con PID ", proc.pid, " se ha terminado")
-                proc.terminate()
+            if proc.pid == proceso:
+                try:
+                    proc.terminate()
+                    print("El proceso", proc.name(), "con PID", proc.pid, "se ha terminado")
+                except psutil.NoSuchProcess:
+                    print("El proceso no existe.")
+                except psutil.AccessDenied:
+                    print("No tienes permisos para terminar este proceso.")
+                except psutil.TimeoutExpired:
+                    print("No se pudo terminar el proceso en el tiempo permitido.")
         #Se pregunta al usuario si quiere continuar en el programa
         print("¿Quieres continuar en el programa? Escribe 's' para continuar")
         respuesta= input()
