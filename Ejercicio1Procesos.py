@@ -30,6 +30,6 @@ while continuar==True:
         respuesta= input()
         if(respuesta!='s'):
             continuar=False
-            print("Has salido del programa")
+            print("Has salido del programa.")
     except:
         print("Ha ocurrido un error")
